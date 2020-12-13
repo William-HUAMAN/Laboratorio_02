@@ -1,4 +1,6 @@
 import random
+from time import sleep as slp
+import os
 
 class Carta:
     def __init__(self, valor, tipo):
@@ -56,10 +58,12 @@ player2=Grupo_cartas([])
 
 
 #Mostramos las cantidades de cartas iniciales en la baraja y las que poseen los jugadores
-print(baraja_principal.verificar_cartas_restantes())
-print(player1.verificar_cartas_restantes())
-print(player2.verificar_cartas_restantes())
-print("-----")
+#print("Las cartas iniciales son:")
+#print(baraja_principal.verificar_cartas_restantes())
+#print(player1.verificar_cartas_restantes())
+#print(player2.verificar_cartas_restantes())
+#slp(2)
+#os.system("cls")
 
 #Repartimos las cartas de la baraja principal
 
@@ -73,42 +77,62 @@ for i in range(52):
     
 
 #Mostramos las cantidades de cartas luego de repartir en la baraja y las que poseen los jugadores
-print(baraja_principal.verificar_cartas_restantes())
-print(player1.verificar_cartas_restantes())
-print(player2.verificar_cartas_restantes())
 
+#print("Las cartas finales son:")
+#print(baraja_principal.verificar_cartas_restantes())
+#print(player1.verificar_cartas_restantes())
+#print(player2.verificar_cartas_restantes())
+#slp(2)
+#os.system("cls")
 
 
 print("El juego ha empezado!!!!")
-contador=0
-while player1.verificar_si_hay_cartas() and player2.verificar_si_hay_cartas():
-    contador+=1
+#contador=0
+respuesta=""
+while player1.verificar_si_hay_cartas() and player2.verificar_si_hay_cartas() and respuesta!="no":
+    #contador+=1
     input("Jugador 1, presione Enter para mostrar su carta")
     #Mostramos la carta del jugador 1
     carta_1=player1.mostar_carta()
     print("La carta del jugador 1 es: ",carta_1)
+
+    print("...")
+
 
     input("Jugador 2, presione Enter para mostrar su carta")
     #Mostramos la carta del jugador 2
     carta_2=player2.mostar_carta()
     print("La carta del jugador 2 es: ",carta_2)
 
+    print("...")
+
     if carta_1.valor>carta_2.valor:
-        print("Jugador_1 se lleva las cartas")
+        print("Jugador 1 se lleva las cartas")
         player1.añadir_carta(carta_1)
         player1.añadir_carta(carta_2)
     elif carta_1.valor<carta_2.valor:
-        print("Jugador_2 se lleva las cartas")
+        print("Jugador 2 se lleva las cartas")
         player2.añadir_carta(carta_1)
         player2.añadir_carta(carta_2)
     else:
         print("Se eliminan las cartas")
 
-    print("--------")
-    print(player1.verificar_cartas_restantes())
-    print(player2.verificar_cartas_restantes())
-    print("---------")
+    print("Las cartas actuales son:")
+    print("El jugador 1, posee: ",player1.verificar_cartas_restantes()," cartas.")
+    print("El jugador 2, posee: ",player2.verificar_cartas_restantes()," cartas.")
+
+
+    respuesta=input("¿Desea continuar con el juego?, responda Si o No: ").lower()
+    slp(1)
+    os.system("cls")
+
 
 print("El juego ha finalizado")
-print(contador)
+if player1.verificar_cartas_restantes()<player2.verificar_cartas_restantes():
+    print("El ganador es el jugador 2")
+elif player1.verificar_cartas_restantes()>player2.verificar_cartas_restantes():
+    print("El ganador es el jugador 1")
+else:
+    print("El juego ha terminado en empate")
+#print(contador)
 
