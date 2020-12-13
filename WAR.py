@@ -1,3 +1,4 @@
+#Codigos de prueba
 import random
 
 class Carta:
@@ -38,4 +39,3 @@ class Baraja(Grupo_cartas):
         for tipo in ["Corazones", "Treboles", "Diamantes", "Espadas"]:
             for valor in range(2, 15):
                 self.cartas.append(Carta(valor, tipo))
-                
